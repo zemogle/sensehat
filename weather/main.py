@@ -35,7 +35,7 @@ def check_weather():
       t_corr = get_smooth(t_corr)
 
       event = sense.stick.wait_for_event(emptybuffer=True)
-      if event.direction == 'UP':
+      if event.direction == 'up':
           sense.show_message("{:.1f}C".format(t_corr))
       elif event.direction == 'down':
           sense.show_message("{:.1f}%".format(h))
