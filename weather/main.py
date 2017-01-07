@@ -42,5 +42,5 @@ def check_weather():
       else:
           sense.clear()
 
- if __name__:
+if __name__:
      check_weather()
