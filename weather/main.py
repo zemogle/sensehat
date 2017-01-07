@@ -34,9 +34,13 @@ def check_weather():
       t_corr = t - ((t_cpu-t)/1.5)
       t_corr = get_smooth(t_corr)
 
-      print("t1=%.1f  t2=%.1f  t_cpu=%.1f  t_corr=%.1f  h=%d  p=%d" % (t1, t2, t_cpu, t_corr, round(h), round(p)))
-
-      time.sleep(5)
+      event = sense.stick.wait_for_event(emptybuffer=True)
+      if event.direction == 'UP':
+          sense.show_message("{:.1f}C".format(t_corr))
+      elif event.direction == 'down':
+          sense.show_message("{:.1f}%".format(h))
+      else:
+          sense.clear()
 
  if __name__:
      check_weather()
