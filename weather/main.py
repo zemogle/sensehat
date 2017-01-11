@@ -1,6 +1,7 @@
 import os
 import time
 from sense_hat import SenseHat
+import atexit
 
 # get CPU temperature
 def get_cpu_temp():
@@ -18,6 +19,13 @@ def get_smooth(x):
   xs = (get_smooth.t[0]+get_smooth.t[1]+get_smooth.t[2])/3
   return(xs)
 
+def tear_down():
+    sense = SenseHat()
+    sense.show_message("Bye")
+    sense.clear()
+    return
+
+atexit.register(tear_down)
 
 def check_weather():
     sense = SenseHat()
