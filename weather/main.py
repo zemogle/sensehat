@@ -31,23 +31,23 @@ def check_weather():
     sense = SenseHat()
 
     while True:
-      t1 = sense.get_temperature_from_humidity()
-      t2 = sense.get_temperature_from_pressure()
-      t_cpu = get_cpu_temp()
-      h = sense.get_humidity()
-      p = sense.get_pressure()
+        event = sense.stick.wait_for_event(emptybuffer=True)
+        t1 = sense.get_temperature_from_humidity()
+        t2 = sense.get_temperature_from_pressure()
+        t_cpu = get_cpu_temp()
+        h = sense.get_humidity()
+        p = sense.get_pressure()
 
-      # calculates the real temperature compesating CPU heating
-      t = (t1+t2)/2
-      t_corr = t - ((t_cpu-t)/1.5)
-      t_corr = get_smooth(t_corr)
+        # calculates the real temperature compesating CPU heating
+        t = (t1+t2)/2
+        t_corr = t - ((t_cpu-t)/1.5)
+        t_corr = get_smooth(t_corr)
 
-      event = sense.stick.wait_for_event(emptybuffer=True)
-      if event.direction == 'up':
+        if event.direction == 'up':
           sense.show_message("{:.1f}C".format(t_corr))
-      elif event.direction == 'down':
+        elif event.direction == 'down':
           sense.show_message("{:.1f}%".format(h))
-      else:
+        else:
           sense.clear()
 
 if __name__:
