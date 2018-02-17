@@ -28,7 +28,7 @@ def monitor():
     t_corr = t - ((t_cpu-t)/1.5)
     t_corr = get_smooth(t_corr)
     f = open("templog.txt", "a+")
-    f.write("{},{}".format(datetime.utcnow('T'), t_corr))
+    f.write("{},{}".format(datetime.utcnow(), t_corr))
     f.close()
     return
 
