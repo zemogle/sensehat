@@ -1,1 +1,2 @@
-sudo python /home/pi/sensehat/weather/monitor.py
+#! /bin/bash
+python /home/pi/sensehat/weather/monitor.py
