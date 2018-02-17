@@ -21,6 +21,8 @@ def monitor():
     sense = SenseHat()
     temp = sense.get_temperature()
     t_cpu = get_cpu_temp()
+    t1 = sense.get_temperature_from_humidity()
+    t2 = sense.get_temperature_from_pressure()
     # calculates the real temperature compesating CPU heating
     t = (t1+t2)/2
     t_corr = t - ((t_cpu-t)/1.5)
